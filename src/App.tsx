@@ -27,7 +27,7 @@ export const App: React.FC = () => {
 
   const filteredTodos = getFilteredTodos(todos, { query, status });
 
-  function handleCloseModul() {
+  function handleCloseModal() {
     setSelectedTodo(null);
   }
 
@@ -36,8 +36,7 @@ export const App: React.FC = () => {
 
     getTodos()
       .then(setTodos)
-      // eslint-disable-next-line no-console
-      .catch(error => console.log(error))
+      .catch(() => alert('Oops, have a problem with showing todos'))
       .finally(() => setIsLoading(false));
   }
 
@@ -73,7 +72,7 @@ export const App: React.FC = () => {
         </div>
       </div>
       {!!selectedTodo && (
-        <TodoModal todo={selectedTodo} onClose={handleCloseModul} />
+        <TodoModal todo={selectedTodo} onClose={handleCloseModal} />
       )}
     </>
   );

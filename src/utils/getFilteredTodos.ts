@@ -10,15 +10,17 @@ export function getFilteredTodos(
   if (filters.status) {
     switch (filters.status) {
       case StatusFilter.ACTIVE:
-        return (filteredTodos = filteredTodos.filter(todo => !todo.completed));
+        filteredTodos = filteredTodos.filter(todo => !todo.completed);
+        break;
       case StatusFilter.COMPLETED:
-        return (filteredTodos = filteredTodos.filter(todo => todo.completed));
+        filteredTodos = filteredTodos.filter(todo => todo.completed);
+        break;
       default:
-        return filteredTodos;
+        break;
     }
   }
 
-  const normalizedQuery = filters.query.toLowerCase();
+  const normalizedQuery = filters.query.trim().toLowerCase();
 
   if (normalizedQuery) {
     filteredTodos = filteredTodos.filter(todo =>

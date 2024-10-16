@@ -7,11 +7,14 @@ export function getFilteredTodos(
 ) {
   let filteredTodos = [...todos];
 
-  if (filters.status !== StatusFilter.ALL) {
-    if (filters.status === StatusFilter.ACTIVE) {
-      filteredTodos = filteredTodos.filter(todo => !todo.completed);
-    } else {
-      filteredTodos = filteredTodos.filter(todo => todo.completed);
+  if (filters.status) {
+    switch (filters.status) {
+      case StatusFilter.ACTIVE:
+        return (filteredTodos = filteredTodos.filter(todo => !todo.completed));
+      case StatusFilter.COMPLETED:
+        return (filteredTodos = filteredTodos.filter(todo => todo.completed));
+      default:
+        return filteredTodos;
     }
   }
 

@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { StatusFilter } from '../../modules/StatusFilter';
+import { STATUS_OPTIONS } from '../../modules/StatusOptions';
 
 type Props = {
   status: StatusFilter;
@@ -14,11 +15,7 @@ export const TodoFilter: React.FC<Props> = ({
   setStatus,
   setQuery,
 }) => {
-  const STATUS_OPTIONS: Record<StatusFilter, string> = {
-    all: 'All',
-    completed: 'Completed',
-    active: 'Active',
-  };
+  const handleCrearQuery = () => setQuery('');
 
   return (
     <form className="field has-addons">
@@ -45,7 +42,7 @@ export const TodoFilter: React.FC<Props> = ({
           className="input"
           placeholder="Search..."
           value={query}
-          onChange={event => setQuery(event.target.value.trimStart())}
+          onChange={event => setQuery(event.target.value.trim())}
         />
         <span className="icon is-left">
           <i className="fas fa-magnifying-glass" />
@@ -58,7 +55,7 @@ export const TodoFilter: React.FC<Props> = ({
               data-cy="clearSearchButton"
               type="button"
               className="delete"
-              onClick={() => setQuery('')}
+              onClick={handleCrearQuery}
             />
           </span>
         )}
